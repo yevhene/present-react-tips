@@ -1,0 +1,15 @@
+{
+  "name": "present-react-tips",
+  "version": "1.0.0",
+  "main": "app.js",
+  "description": "Presentation about dangerous React moments",
+  "scripts": {
+    "start": "node ./presentation/app"
+  },
+  "repository": "github:yevhene/present-react-tips",
+  "license": "WTFPL",
+  "homepage": "https://present-react-tips.herokuapp.com",
+  "dependencies": {
+    "presentation": "file:presentation"
+  }
+}
