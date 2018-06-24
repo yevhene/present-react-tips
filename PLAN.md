@@ -1,5 +1,9 @@
 https://medium.com/@dan_abramov
 
+## Right
+setState (async, callback)
+Correct References.
+
 ### Containers vs Components
 https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0
 
@@ -10,11 +14,6 @@ Full state control vs Partial state control
 Component vs PureComponent vs Stateless Functional Component
 
 High order components
-
-## Right
-Binding
-setState (async, callback)
-Correct References.
 
 ## JSX patterns
 clauses

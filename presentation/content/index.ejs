@@ -1,10 +1,70 @@
 <section>
-  <h2>React особливі моменти</h2>
+  <h1>React tips</h1>
 
   <small>
-    Шемет Євген<br />
+    Yevhen Shemet<br />
     github: <a target="_blank" href="https://github.com/yevhene/present-react-tips">yevhene/present-react-tips</a>
   </small>
+</section>
+
+<section>
+  <h2>Misc</h2>
+</section>
+
+<section>
+  <h2>Binding</h2>
+
+  <section>
+    <h3>React.createClass</h3>
+
+    <pre><code class="javascript" data-trim contenteditable>
+// This magically works with React.createClass
+// because `this` is bound for you.
+onChange={this.handleChange}
+    </code></pre>
+  </section>
+
+  <section>
+    <h3>Bind</h3>
+
+    <pre><code class="javascript" data-trim contenteditable>
+onChange={this.handleChange.bind(this)}
+    </code></pre>
+
+    <b>Bad performance</b>
+  </section>
+
+  <section>
+    <h3>Arrow function</h3>
+
+    <pre><code class="javascript" data-trim contenteditable>
+onChange={e =&gt; this.handleChange(e)}
+    </code></pre>
+
+    <b>Bad performance</b>
+  </section>
+
+  <section>
+    <h3>Bind in constructor</h3>
+
+    <pre><code class="javascript" data-trim contenteditable>
+constructor(props) {
+  super(props);
+  this.handleChange = this.handleChange.bind(this);
+}
+    </code></pre>
+  </section>
+
+  <section>
+    <h3>Arrow function in Class property</h3>
+
+    <pre><code class="javascript" data-trim contenteditable>
+handleChange = () =&gt; {
+  // call this function from render
+  // and this.whatever in here works fine.
+};
+    </code></pre>
+  </section>
 </section>
 
 <section>
