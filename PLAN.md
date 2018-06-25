@@ -1,9 +1,5 @@
 https://medium.com/@dan_abramov
 
-## Right
-setState (async, callback)
-Correct References.
-
 ### Containers vs Components
 https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0
 

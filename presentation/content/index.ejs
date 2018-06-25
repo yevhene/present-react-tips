@@ -8,10 +8,6 @@
 </section>
 
 <section>
-  <h2>Misc</h2>
-</section>
-
-<section>
   <h2>Binding</h2>
 
   <section>
@@ -31,7 +27,7 @@ onChange={this.handleChange}
 onChange={this.handleChange.bind(this)}
     </code></pre>
 
-    <b>Bad performance</b>
+    <b>Danger: Bad performance</b>
   </section>
 
   <section>
@@ -41,7 +37,7 @@ onChange={this.handleChange.bind(this)}
 onChange={e =&gt; this.handleChange(e)}
     </code></pre>
 
-    <b>Bad performance</b>
+    <b>Danger: Bad performance</b>
   </section>
 
   <section>
@@ -64,6 +60,121 @@ handleChange = () =&gt; {
   // and this.whatever in here works fine.
 };
     </code></pre>
+  </section>
+</section>
+
+<section>
+  <h2>setState</h2>
+
+  <section>
+    <h3>Synchronous</h3>
+
+    <pre><code class="javascript" data-trim contenteditable>
+setState({
+  counter: this.state.counter + 1
+});
+
+afterStateChange();
+    </code></pre>
+
+    <b>Danger: Not So Synchronous</b>
+  </section>
+
+  <section>
+    <h3>Asynchronous callback</h3>
+
+    <pre><code class="javascript" data-trim contenteditable>
+setState({
+  counter: this.state.counter + 1
+}, () =&gt; {
+  afterStateChange();
+});
+    </code></pre>
+  </section>
+
+  <section>
+    <h3>Asynchronous</h3>
+
+    <pre><code class="javascript" data-trim contenteditable>
+setState((prevState) =&gt; {
+  counter: prevState.counter + 1
+}, () =&gt; {
+  afterStateChange();
+});
+    </code></pre>
+  </section>
+</section>
+
+<section>
+  <h2>References</h2>
+
+  <section>
+    <h3>Legacy</h3>
+
+    <pre><code class="javascript" data-trim contenteditable>
+class Form extends Component {
+  onSubmit() {
+    sendForm({ name: this.input.value });
+  }
+
+  render() {
+    return <input ref="input" />;
+  }
+}
+    </code></pre>
+  </section>
+
+  <section>
+    <h3>Old</h3>
+
+    <pre><code class="javascript" data-trim contenteditable>
+class Hello extends React.Component {
+  constructor() {
+    super();
+    this.refDict = {};
+  }
+
+  render() {
+    return
+      &lt;Repeat
+        times="3"
+        template={i =&gt;
+          &lt;span ref={el =&gt; this.refDict[i] = el}&gt;
+            Hello {i}
+          &lt;/span&gt;
+        }
+      /&gt;;
+  }
+}
+    </code></pre>
+  </section>
+
+  <section>
+    <h3>New</h3>
+
+    <pre><code class="javascript" data-trim contenteditable>
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.input = React.createRef();
+  }
+
+  onSubmit() {
+    sendForm({ name: this.input.current.value });
+  }
+
+  render() {
+    return <input ref={this.input} />;
+  }
+}
+    </code></pre>
+  </section>
+</section>
+
+<section>
+  <h2>Callbacks</h2>
+
+  <section>
   </section>
 </section>
 
