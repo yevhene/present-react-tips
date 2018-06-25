@@ -13,8 +13,8 @@ dl {
 
 img {
   background-color: white !important;
-  max-height: 45vh !important;
-  height: 45vh;
+  max-height: 80vh !important;
+  height: 80vh;
   box-shadow: none !important;
   border: 20px white solid !important;
 }

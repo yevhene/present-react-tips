@@ -139,9 +139,7 @@ class Hello extends React.Component {
       &lt;Repeat
         times="3"
         template={i =&gt;
-          &lt;span ref={el =&gt; this.refDict[i] = el}&gt;
-            Hello {i}
-          &lt;/span&gt;
+          &lt;span ref={el =&gt; this.refDict[i] = el}&gt;Hello {i}&lt;/span&gt;
         }
       /&gt;;
   }
@@ -191,11 +189,11 @@ const ref = React.createRef();
   <h2>Callbacks</h2>
 
   <section>
-    <h3><strike>componentWillMount</strike><h3>
+    <h3><strike>componentWillMount</strike></h3>
   </section>
 
   <section>
-    <h3><strike>componentWillReceiveProps</strike><h3>
+    <h3><strike>componentWillReceiveProps</strike></h3>
 
     <pre><code class="javascript" data-trim contenteditable>
 class Conter extends Component {
@@ -203,7 +201,6 @@ class Conter extends Component {
     super(props);
     this.state = { count: props.count };
   }
-
   componentWillReceiveProps(nextProps) {
     if (nextProps.count !== this.props.count) {
       this.setState({ count: nextProps.count });
@@ -261,6 +258,10 @@ class Conter extends Component {
     }
   }
     </code></pre>
+  </section>
+
+  <section>
+    <img src="images/react-lifecycle.jpg" />
   </section>
 </section>
 
