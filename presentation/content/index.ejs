@@ -266,5 +266,208 @@ class Conter extends Component {
 </section>
 
 <section>
+  <h2>Lint</h2>
+
+  <ul>
+    <li><a href="https://github.com/eslint/eslint">eslint</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="https://github.com/benmosher/eslint-plugin-import">eslint-plugin-import</a></li>
+    <li><a href="https://github.com/yannickcr/eslint-plugin-react">eslint-plugin-react</a></li>
+    <li><a href="https://github.com/evcohen/eslint-plugin-jsx-a11y">eslint-plugin-jsx-a11y</a></li>
+  </ul>
+
+  <ul>
+    <li>eslint-config-airbnb</li>
+    <li>eslint-config-fbjs</li>
+    <li>eslint-config-google</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Avoid rerender</h2>
+
+  <section>
+    <h3>shouldComponentUpdate</h3>
+
+    <pre><code class="javascript" data-trim contenteditable>
+class MyComponent extends Component {
+  shouldComponentUpdate (nextProps, nextState) {
+    return !_.isEqual(this.props, nextProps) ||
+           !_.isEqual(this.state, nextState);
+  }
+
+  render() {
+    return &lt;HeavyRerender&gt;;
+  }
+}
+    </code></pre>
+
+    <b>For performance gain with custom checks</b>
+  </section>
+
+  <section>
+    <h3>PureComponent</h3>
+
+    <pre><code class="javascript" data-trim contenteditable>
+class MyComponent extends PureComponent {
+  render() {
+    return &lt;HeavyRerender&gt;;
+  }
+}
+    </code></pre>
+
+    <b>For performance gain</b>
+  </section>
+
+  <section>
+    <h3>Stateless component</h3>
+
+    <pre><code class="javascript" data-trim contenteditable>
+function MyComponent() {
+  return &lt;HeavyRerender&gt;;
+}
+    </code></pre>
+
+    <b>Warning: No performance gain</b>
+  </section>
+</section>
+
+<section>
+  <h2>Components vs Containers</h2>
+
+  <section>
+    <h3>@dan_abramov</h3>
+
+    <a href="https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0">Presentational and Container Components</a>
+  </section>
+
+  <section>
+    <h3>My</h2>
+
+    <dl>
+      <dt>Containers</dt><dd>Connected to redux;</dd>
+      <dt>Components</dt><dd>Receive props.</dd>
+    </dl>
+
+    <hr />
+
+    <dl>
+      <dt>Screens</dt><dd>Top container components. Organized by screen hierarchy;</dd>
+      <dt>Controls</dt><dd>Components with state, often form controls.</dd>
+    </dl>
+  </section>
+
+  <section>
+    <h3>Full state control vs Partial state control</h3>
+  </section>
+</section>
+
+<section>
+  <h2>Redux best practices</h2>
+
+  <section>
+    <h3>When?</h3>
+
+    <h4>Use Redux when data structure doesn't match component structure.</h4>
+  </section>
+
+  <section>
+    <h3>Use tools for side-effects</h3>
+
+    <ul>
+      <li>redux-thunk</li>
+      <li>redux-promise</li>
+      <li>redux-saga (most flexible)</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Use Reselect</h3>
+
+    <pre><code class="javascript" data-trim contenteditable>
+import { createSelector } from 'reselect'
+
+let exampleState = {
+  shop: {
+    taxPercent: 8,
+    items: [
+      { name: 'apple', value: 1.20 },
+      { name: 'orange', value: 0.95 },
+    ]
+  }
+}
+    </code></pre>
+
+    <b>Memoization</b>
+  </section>
+
+  <section>
+    <h3>Use Reselect</h3>
+
+    <pre><code class="javascript" data-trim contenteditable>
+const shopItemsSelector = state =&gt; state.shop.items
+const taxPercentSelector = state =&gt; state.shop.taxPercent
+const subtotalSelector = createSelector(
+  shopItemsSelector,
+  items =&gt; items.reduce((acc, item) =&gt; acc + item.value, 0)
+)
+const taxSelector = createSelector(
+  subtotalSelector,
+  taxPercentSelector,
+  (subtotal, taxPercent) =&gt; subtotal * (taxPercent / 100)
+)
+export const totalSelector = createSelector(
+  subtotalSelector,
+  taxSelector,
+  (subtotal, tax) =&gt; ({ total: subtotal + tax })
+)
+    </code></pre>
+  </section>
+
+  <section>
+    <h3>You can use action/reducer creators</h3>
+
+    <ul>
+      <li><a href="https://github.com/redux-utilities/redux-actions">redux-utilities/redux-actions</a></li>
+      <li><a href="https://github.com/erikras/ducks-modular-redux">erikras/ducks-modular-redux</a></li>
+    </ul>
+
+    <b>But do not have to</b>
+  </section>
+
+  <section>
+    <h3>You can use Immutable.js</h3>
+
+    <pre><code class="javascript" data-trim contenteditable>
+...
+const ids = ( /* state = [] */ state = List([]), action) =&gt; {
+  switch (action.type) {
+    case 'FETCH':
+      // return action.value.result;
+      return List(action.value.result); // !
+    case 'ADD':
+      // return [...state, action.value.result];
+      return state.push(action.value.result); // !
+    case 'REMOVE':
+      /*
+      const newState = [...state];
+      newState.splice(state.indexOf(action.value.result), 1);
+      return newState;
+      */
+      return state.delete(state.indexOf(action.value.result)); // !
+    default:
+      return state;
+  }
+};
+...
+    </code></pre>
+
+    <b>But do not have to</b>
+  </section>
+</section>
+
+<section>
   <h2>Питання?</h2>
 </section>
