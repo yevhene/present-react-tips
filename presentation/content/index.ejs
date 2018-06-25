@@ -169,12 +169,98 @@ class MyComponent extends React.Component {
 }
     </code></pre>
   </section>
+
+  <section>
+    <h3>forwardRef</h3>
+
+    <pre><code class="javascript" data-trim contenteditable>
+const FancyButton = React.forwardRef((props, ref) =&gt; (
+  &lt;button ref={ref} className="FancyButton"&gt;
+    {props.children}
+  &lt;/button&gt;
+));
+
+// You can now get a ref directly to the DOM button:
+const ref = React.createRef();
+&lt;FancyButton ref={ref}&gt;Click me!&lt;/FancyButton&gt;;
+    </code></pre>
+  </section>
 </section>
 
 <section>
   <h2>Callbacks</h2>
 
   <section>
+    <h3><strike>componentWillMount</strike><h3>
+  </section>
+
+  <section>
+    <h3><strike>componentWillReceiveProps</strike><h3>
+
+    <pre><code class="javascript" data-trim contenteditable>
+class Conter extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { count: props.count };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.count !== this.props.count) {
+      this.setState({ count: nextProps.count });
+    }
+  }
+
+  render() {
+    return &lt;h1&gt;{this.state.count}&lt;/h1&gt;
+  }
+}
+    </code></pre>
+  </section>
+
+  <section>
+    <h3>static getDerivedStateFromProps</h3>
+
+    <pre><code class="javascript" data-trim contenteditable>
+class Conter extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    return { count: nextProps.count };
+  }
+
+  render() {
+    return &lt;h1&gt;{this.state.count}&lt;/h1&gt;
+  }
+}
+    </code></pre>
+  </section>
+
+  <section>
+    <h3><strike>componentWillUpdate</strike><h3>
+  </section>
+
+  <section>
+    <h3>getSnapshotBeforeUpdate</h3>
+
+    <pre><code class="javascript" data-trim contenteditable>
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    if (prevProps.list.length &lt; this.props.list.length) {
+      const list = this.listRef.current;
+      return list.scrollHeight - list.scrollTop;
+    }
+    return null;
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (snapshot !== null) {
+      const list = this.listRef.current;
+      list.scrollTop = list.scrollHeight - snapshot;
+    }
+  }
+    </code></pre>
   </section>
 </section>
 

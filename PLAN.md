@@ -26,6 +26,3 @@ Immutable.js? Reselect?
 
 ## Update Hive / Two way data binding
 Saga
-
-## New callbacks
-https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html
