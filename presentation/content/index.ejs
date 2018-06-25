@@ -268,21 +268,31 @@ class Conter extends Component {
 <section>
   <h2>Lint</h2>
 
-  <ul>
-    <li><a href="https://github.com/eslint/eslint">eslint</a></li>
-  </ul>
+  <section>
+    <ul>
+      <li><a href="https://github.com/eslint/eslint">eslint</a></li>
+    </ul>
+  </section>
 
-  <ul>
-    <li><a href="https://github.com/benmosher/eslint-plugin-import">eslint-plugin-import</a></li>
-    <li><a href="https://github.com/yannickcr/eslint-plugin-react">eslint-plugin-react</a></li>
-    <li><a href="https://github.com/evcohen/eslint-plugin-jsx-a11y">eslint-plugin-jsx-a11y</a></li>
-  </ul>
+  <section>
+    <h3>Plugins</h3>
 
-  <ul>
-    <li>eslint-config-airbnb</li>
-    <li>eslint-config-fbjs</li>
-    <li>eslint-config-google</li>
-  </ul>
+    <ul>
+      <li><a href="https://github.com/benmosher/eslint-plugin-import">eslint-plugin-import</a></li>
+      <li><a href="https://github.com/yannickcr/eslint-plugin-react">eslint-plugin-react</a></li>
+      <li><a href="https://github.com/evcohen/eslint-plugin-jsx-a11y">eslint-plugin-jsx-a11y</a></li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Config</h3>
+
+    <ul>
+      <li>eslint-config-airbnb</li>
+      <li>eslint-config-fbjs</li>
+      <li>eslint-config-google</li>
+    </ul>
+  </section>
 </section>
 
 <section>
@@ -441,27 +451,23 @@ export const totalSelector = createSelector(
     <h3>You can use Immutable.js</h3>
 
     <pre><code class="javascript" data-trim contenteditable>
-...
 const ids = ( /* state = [] */ state = List([]), action) =&gt; {
   switch (action.type) {
     case 'FETCH':
       // return action.value.result;
-      return List(action.value.result); // !
+      return List(action.value.result);
     case 'ADD':
       // return [...state, action.value.result];
-      return state.push(action.value.result); // !
+      return state.push(action.value.result);
     case 'REMOVE':
-      /*
-      const newState = [...state];
-      newState.splice(state.indexOf(action.value.result), 1);
-      return newState;
-      */
-      return state.delete(state.indexOf(action.value.result)); // !
+      // const newState = [...state];
+      // newState.splice(state.indexOf(action.value.result), 1);
+      // return newState;
+      return state.delete(state.indexOf(action.value.result));
     default:
       return state;
   }
 };
-...
     </code></pre>
 
     <b>But do not have to</b>
